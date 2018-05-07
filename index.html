@@ -92,24 +92,26 @@
               status.innerHTML = str
             }
           }
+          switch(customer.state){
           // Customer object has two properties, State and email 
-          //If the state is prequalified or unqualified append a message to the User.
-          if (customer.state === 'PREQUALIFIED'){
-            let prequalified = `Wow, congrats ${customer.email}, you've been prequalified!`
-            visibility(prequalified)
-          } 
-          if (customer.state ==='UNQUALIFIED'){
+          //If the state is prequalified or unqualified append a message to the User.         
+          case 'PREQUALIFIED' :
+            let prequalified = `Wow, congrats ${customer.email}, you've been prequalified!`;
+            visibility(prequalified);
+          break;
+          case 'UNQUALIFIED':
             let unqualified =`I'm sorry ${customer.email} you're not qualified for financing`
             visibility(unqualified)
-              }
-          
-          if (customer.state ==='ABANDONED'){
+          break;
+          case 'ABANDONED':
             let abandoned = `Wow, congrats you've been ABANDONED!`
             visibility(abandoned)
+            break;
+
               }
             }
+            }
           }
-        }
     
       bread.checkout(opts);
       </script>
