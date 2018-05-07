@@ -1,119 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Bread</title>
 </head>
 <body>
-        <script src="https://checkout-sandbox.getbread.com/bread.js" data-api-key="4dbfe30f-0841-45bf-b281-7de2f2c62a49"></script>
-        <form id="bread-checkout-form" action="/confirm" method="POST">
-          <div id="bread-checkout-btn" data-bread-default-size="true"></div>
-          <script>
-         var opts = {
-                buttonId: 'bread-checkout-btn',
-                actAsLabel: false, 
-                asLowAs: true, //Displays price per month to logged out users
-                customCSS: '.bread-embed,body,html{position:absolute;top:0;right:0;bottom:0;left:0;font-family:sans-serif;margin:0;padding:0}.bread-embed{visibility:hidden}.bread-btn{border:2px solid #055170;border-radius:8px;background:#fff;font-size:13px;color:red;cursor:pointer}.bread-btn .bread-embed-inner{position:absolute;top:0;left:0;right:50px;bottom:0;padding:0 1em}.bread-btn .bread-embed-icon{position:absolute;top:-1px;right:-51px;bottom:-1px;left:100%;margin-left:-50px;margin-right:50px;background-color:#055170;background-repeat:no-repeat;background-image:url(assets/coin.svg);background-position:center;background-size:auto 30px;border-radius:0 4px 4px 0;cursor:pointer}.bread-btn .bread-pot:before{content:"Pay over time";color:red}.bread-dur{text-transform:uppercase}.bread-as-low-as .bread-as-low-as-info{z-index:1000;font-size:1.25em;font-weight:700;padding:3px}.bread-btn.bread-as-low-as .bread-as-low-as:before,.bread-label .bread-as-low-as:before{content:"As low as";color:red;margin-right:0!important}.bread-btn.bread-show-terms .bread-for:before,.bread-label .bread-for:before{content:"for";color:red;margin-right:.5em}.bread-center{text-align:center;vertical-align:middle;height:100%;width:100%;display:table}.bread-center-inner{display:table-cell;vertical-align:middle}.bread-label{color:red;text-align:center}.bread-label .bread-embed-inner{display:inline-block;vertical-align:middle;height:100%}.bread-label .bread-embed-icon{vertical-align:middle;display:inline-block;background:#ef8919;border-radius:100%;width:1.25em;height:1.25em;color:#fff;line-height:1.5em;font-size:.85em;margin-top:-.2em}.bread-label .bread-embed-icon:after{content:"i"}.bread-btn.bread-show-terms .bread-for:before,.bread-btn.bread-show-terms .bread-pot:before{color:red}@media only screen and -webkit-min-device-pixel-ratio 2,only screen and min-device-pixel-ratio 2,only screen and min-resolution 192dpi,only screen and min-resolution 2dppx{.bread-btn .bread-embed-icon{background-image:url(assets/coin.svg)}}',
-               items: [
-                {
-                  name:'Overwatch',
-                  price:10000,
-                  sku:'Overwatch123',
-                  imageUrl:'[https://images-na.ssl-images-amazon.com/images/I/51jI2r-gFDL._AC_SX215_.jpg]',
-                  detailUrl:'[https://www.amazon.com/Overwatch-Game-Year-Xbox-One/dp/B0733HQQQQ/ref=sr_1_1?ie=UTF8&qid=1525642686&sr=8-1&keywords=overwatch+game]', 
-                  quantity: 1
-                }],
-                shippingOptions:[{
-                  typeId:001,
-                  cost:700,
-                  type:'Two-Day Shipping'
-                },
-                {
-                  typeId:002,
-                  cost:1500,
-                  type:'Overnight Shipping'
-                }
-                ],
-                shippingOptions:[{
-                  typeId:001,
-                  cost:700,
-                  type:'Two-Day Shipping'
-                },
-                {
-                  typeId:002,
-                  cost:1500,
-                  type:'Overnight Shipping'
-                }
-                ],
-                billingContact:{
-                  firstName:'Justin',
-                  lastName:'Afsari',
-                  address:'126 1ST AVE APT 2R',
-                  zip:'94550',
-                  city:'New York',
-                  state:'NY',
-                  phone:'925-300-5184',
-                  email:'afsarijustin@gmail.com'
-                },
-                shippingContact:{
-                  fullName: 'Justin Afsari',
-                  address:'126 1ST AVE APT 2R',
-                  zip:'94550',
-                  city:'New York',
-                  state:'NY',
-                  phone:'925-300-5184'
-                },
-                calculateTax: function(shippingContact,callback){
-                    if(shippingContact.state === 'NY') { // check to see if address is in New York
-                  var shippingTotal = shippingContact.selectedShippingOption.cost; // I want to include the shipping with the calculation of my tax
-                  //selectedShippingOption is a property of shippingContact that changes as I dynamically change the shipping option.
-                   for (let i = 0; i < opts.items.length ; i++){
-                     shippingTotal += opts.items[i].price * opts.items[i].quantity //Include the price + quantity of the elements within opts.items
-                     var nyTax = shippingTotal * .05 // New York tax
-                   }
-                  callback(null, nyTax); //Use the callback to return the calculated Tax for NY
-                } else {
-                  callback(null, 0); // Else for not NY
-                }
-              },
-              done: function(err,txtoken){
-                // If their is an error, return an error else append a message to the user
-                if (err){
-                  console.error(`Error:${err}`)
-                } else {
-                  console.log(`tx_token:${txtoken}`)
-                }
-                let status = document.querySelector('#status')
-                let success = document.createElement("li")
-                status.appendChild(success)
-                success.innerHTML = "Thank you for your purchase, you may now proceed!"
-                },
-                onCustomerClose:function(err,customer){
-                if (err){
-                  console.log(`Error:${err}`)
-                } else {
-                  console.log(customer)
-                  // Customer object has two properties, State and email 
-                  //If the state is prequalified or unqualified append a message to the User.
-                  let status = document.querySelector('#status')
-                  if (customer.state === 'PREQUALIFIED'){
-                    let prequalified = document.createElement("li")
-                    status.appendChild(prequalified)
-                    prequalified.innerHTML= `Wow, congrats ${customer.email}, you've been prequalified!`
-                  } 
-                  if (customer.state ==='UNQUALIFIED'){
-                    let unqualified = document.createElement("li")
-                    status.appendChild(unqualified)
-                    unqualified.innterHTML = `I'm sorry ${customer.email} you're not qualified for financing`
-        
-                  }
-                }
-              }
-          };
-          bread.checkout(opts);
-          </script>
-        </form>
+    <script src="https://checkout-sandbox.getbread.com/bread.js" data-api-key="7101ea30-8ae3-47ab-a8bd-235860d36f3e"></script>
+    <form id="bread-checkout-form" action="/confirm" method="POST">
+      <div id="bread-checkout-btn" data-bread-default-size="true"></div>
+    </form>
+    <ul id='status'> </ul>
+      <script>
+      var opts = {
+        buttonId: 'bread-checkout-btn',
+        actAsLabel: false, 
+        asLowAs: true, //Displays price per month to logged out users
+        customCSS: '.bread-embed,body,html{position:absolute;top:0;right:0;bottom:0;left:0;font-family:sans-serif;margin:0;padding:0}.bread-embed{visibility:hidden}.bread-btn{border:2px solid #055170;border-radius:8px;background:#fff;font-size:13px;color:red;cursor:pointer}.bread-btn .bread-embed-inner{position:absolute;top:0;left:0;right:50px;bottom:0;padding:0 1em}.bread-btn .bread-embed-icon{position:absolute;top:-1px;right:-51px;bottom:-1px;left:100%;margin-left:-50px;margin-right:50px;background-color:#055170;background-repeat:no-repeat;background-image:url(assets/coin.svg);background-position:center;background-size:auto 30px;border-radius:0 4px 4px 0;cursor:pointer}.bread-btn .bread-pot:before{content:"Pay over time";color:red}.bread-dur{text-transform:uppercase}.bread-as-low-as .bread-as-low-as-info{z-index:1000;font-size:1.25em;font-weight:700;padding:3px}.bread-btn.bread-as-low-as .bread-as-low-as:before,.bread-label .bread-as-low-as:before{content:"As low as";color:red;margin-right:0!important}.bread-btn.bread-show-terms .bread-for:before,.bread-label .bread-for:before{content:"for";color:red;margin-right:.5em}.bread-center{text-align:center;vertical-align:middle;height:100%;width:100%;display:table}.bread-center-inner{display:table-cell;vertical-align:middle}.bread-label{color:red;text-align:center}.bread-label .bread-embed-inner{display:inline-block;vertical-align:middle;height:100%}.bread-label .bread-embed-icon{vertical-align:middle;display:inline-block;background:#ef8919;border-radius:100%;width:1.25em;height:1.25em;color:#fff;line-height:1.5em;font-size:.85em;margin-top:-.2em}.bread-label .bread-embed-icon:after{content:"i"}.bread-btn.bread-show-terms .bread-for:before,.bread-btn.bread-show-terms .bread-pot:before{color:red}@media only screen and -webkit-min-device-pixel-ratio 2,only screen and min-device-pixel-ratio 2,only screen and min-resolution 192dpi,only screen and min-resolution 2dppx{.bread-btn .bread-embed-icon{background-image:url(assets/coin.svg)}}',
+       items: [
+        {
+          name:'Overwatch',
+          price:10000,
+          sku:'Overwatch123',
+          imageUrl:'[https://images-na.ssl-images-amazon.com/images/I/51jI2r-gFDL._AC_SX215_.jpg]',
+          detailUrl:'[https://www.amazon.com/Overwatch-Game-Year-Xbox-One/dp/B0733HQQQQ/ref=sr_1_1?ie=UTF8&qid=1525642686&sr=8-1&keywords=overwatch+game]', 
+          quantity: 1
+        }],
+        shippingOptions:[{
+          typeId:001,
+          cost:700,
+          type:'Two-Day Shipping'
+        },
+        {
+          typeId:002,
+          cost:1500,
+          type:'Overnight Shipping'
+        }
+        ],
+        billingContact:{
+          firstName:'Justin',
+          lastName:'Afsari',
+          address:'1734 Hansen Rd',
+          zip:'94550',
+          city:'Livermore',
+          state:'NY',
+          phone:'925-300-5184',
+          email:'afsarijustin@gmail.com'
+        },
+        shippingContact:{
+          fullName: 'Justin Afsari',
+          address:'1734 Hansen Rd',
+          zip:'94550',
+          city:'Livermore',
+          state:'NY',
+          phone:'925-300-5184'
+        },
+          calculateTax: function(shippingContact,cb){
+            if(shippingContact.state === 'NY') { // check to see if address is in New York.
+          var shippingTotal = shippingContact.selectedShippingOption.cost; // I want to include the shipping with the calculation of my tax
+          //selectedShippingOption is a property of shippingContact that changes as I dynamically change the shipping option.
+           for (let i = 0; i < opts.items.length ; i++){
+             shippingTotal += opts.items[i].price * opts.items[i].quantity //Include the price + quantity of the elements within opts.items
+             var nyTotal = shippingTotal * .05 // New York total
+           }
+          cb(null, nyTotal); //Use the callback to return the calculated Tax for NY
+        } else {
+          cb(null, 0); // Else for not NY
+        }
+      },
+      done: function(err,txtoken){
+        // If their is an error, return an error else append a message to the user
+        if (err){
+          console.error(`Error:${err}`)
+        } else {
+          console.log(`tx_token:${txtoken}`)
+        }
+        let status = document.querySelector('#status')
+        let success = document.createElement("li")
+        status.appendChild(success)
+        success.innerHTML = "Thank you for your purchase, you may now proceed!"
+        },
+      onCustomerClose:function(err,customer){
+        if (err){
+          console.log(`Error:${err}`)
+        } else {
+          console.log(customer)
+          // Customer object has two properties, State and email 
+          //If the state is prequalified or unqualified append a message to the User.
+          let status = document.querySelector('#status')
+          if (customer.state === 'PREQUALIFIED'){
+            let prequalified = document.createElement("li")
+            status.appendChild(prequalified)
+            prequalified.innerHTML= `Wow, congrats ${customer.email}, you've been prequalified!`
+          } 
+          if (customer.state ==='UNQUALIFIED'){
+            let unqualified = document.createElement("li")
+            status.appendChild(unqualified)
+            unqualified.innterHTML = `I'm sorry ${customer.email} you're not qualified for financing`
+
+          }
+        }
+      }
+    }
+    
+      bread.checkout(opts);
+      </script>
+  
 </body>
 </html>
