@@ -81,34 +81,35 @@
         status.appendChild(success)
         success.innerHTML = "Thank you for your purchase, you may now proceed!"
         },
-      onCustomerClose:function(err,customer){
+        onCustomerClose:function(err,customer){
         if (err){
           console.log(`Error:${err}`)
         } else {
           console.log(customer)
+          const visibility = (str) => {
+            let status = document.querySelector('#status')
+            if (status) {
+              status.innerHTML = str
+            }
+          }
           // Customer object has two properties, State and email 
           //If the state is prequalified or unqualified append a message to the User.
-          let status = document.querySelector('#status')
           if (customer.state === 'PREQUALIFIED'){
-            let prequalified = document.createElement("li")
-            status.appendChild(prequalified)
-            prequalified.innerHTML= `Wow, congrats ${customer.email}, you've been prequalified!`
+            let prequalified = `Wow, congrats ${customer.email}, you've been prequalified!`
+            visibility(prequalified)
           } 
           if (customer.state ==='UNQUALIFIED'){
-            let unqualified = document.createElement("li")
-            status.appendChild(unqualified)
-            unqualified.innterHTML = `I'm sorry ${customer.email} you're not qualified for financing`
-
-          }
-          if (customer.state ==='ABANDONED'){
-            let abandoned = document.createElement("li")
-            status.appendChild(abandoned)
-            abandoned.innerHTML = `I'm sorry you're not qualified`
+            let unqualified =`I'm sorry ${customer.email} you're not qualified for financing`
+            visibility(unqualified)
+              }
           
+          if (customer.state ==='ABANDONED'){
+            let abandoned = `Wow, congrats you've been ABANDONED!`
+            visibility(abandoned)
+              }
+            }
           }
         }
-      }
-    }
     
       bread.checkout(opts);
       </script>
