@@ -68,6 +68,18 @@
           callback(null, 0); // Else for not NY
         }
       },
+      done: function(err,txtoken){
+        // If their is an error, return an error else append a message to the user
+        if (err){
+          console.error(`Error:${err}`)
+        } else {
+          console.log(`tx_token:${txtoken}`)
+        }
+        let status = document.querySelector('#status')
+        let success = document.createElement("li")
+        status.appendChild(success)
+        success.innerHTML = "Thank you for your purchase, you may now proceed!"
+        }
   };
   bread.checkout(opts);
   </script>
