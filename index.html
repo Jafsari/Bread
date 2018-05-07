@@ -13,6 +13,12 @@
     </form>
     <ul id='status'> </ul>
       <script>
+            const visibility = (str) => {
+            let status = document.querySelector('#status')
+            if (status) {
+              status.innerHTML = str
+            }
+          }
       var opts = {
         buttonId: 'bread-checkout-btn',
         actAsLabel: false, 
@@ -76,10 +82,8 @@
         } else {
           console.log(`tx_token:${txtoken}`)
         }
-        let status = document.querySelector('#status')
-        let success = document.createElement("li")
-        status.appendChild(success)
-        success.innerHTML = "Thank you for your purchase, you may now proceed!"
+        let success = "Thank you for your purchase, you may now proceed!"
+        visibility(success)
         },
         onCustomerClose:function(err,customer){
         if (err){
