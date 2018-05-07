@@ -100,6 +100,12 @@
             unqualified.innterHTML = `I'm sorry ${customer.email} you're not qualified for financing`
 
           }
+          if (customer.state ==='ABANDONED'){
+            let abandoned = document.createElement("li")
+            status.appendChild(abandoned)
+            abandoned.innerHTML = `I'm sorry you're not qualified`
+          
+          }
         }
       }
     }
