@@ -55,6 +55,19 @@
           state:'NY',
           phone:'925-300-5184'
         },
+        calculateTax: function(shippingContact,callback){
+            if(shippingContact.state === 'NY') { // check to see if address is in New York
+          var shippingTotal = shippingContact.selectedShippingOption.cost; // I want to include the shipping with the calculation of my tax
+          //selectedShippingOption is a property of shippingContact that changes as I dynamically change the shipping option.
+           for (let i = 0; i < opts.items.length ; i++){
+             shippingTotal += opts.items[i].price * opts.items[i].quantity //Include the price + quantity of the elements within opts.items
+             var nyTotal = shippingTotal * .05 // New York total
+           }
+          callback(null, nyTotal); //Use the callback to return the calculated Tax for NY
+        } else {
+          callback(null, 0); // Else for not NY
+        }
+      },
   };
   bread.checkout(opts);
   </script>
