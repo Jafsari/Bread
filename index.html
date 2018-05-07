@@ -61,9 +61,9 @@
           //selectedShippingOption is a property of shippingContact that changes as I dynamically change the shipping option.
            for (let i = 0; i < opts.items.length ; i++){
              shippingTotal += opts.items[i].price * opts.items[i].quantity //Include the price + quantity of the elements within opts.items
-             var nyTotal = shippingTotal * .05 // New York total
+             var nyTax = shippingTotal * .05 // New York tax
            }
-          callback(null, nyTotal); //Use the callback to return the calculated Tax for NY
+          callback(null, nyTax); //Use the callback to return the calculated Tax for NY
         } else {
           callback(null, 0); // Else for not NY
         }
