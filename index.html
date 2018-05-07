@@ -19,21 +19,25 @@
               status.innerHTML = str
             }
           }
-      var opts = {
-        buttonId: 'bread-checkout-btn',
-        actAsLabel: false, 
-        asLowAs: true, //Displays price per month to logged out users
-        customCSS: '.bread-embed,body,html{position:absolute;top:0;right:0;bottom:0;left:0;font-family:sans-serif;margin:0;padding:0}.bread-embed{visibility:hidden}.bread-btn{border:2px solid #055170;border-radius:8px;background:#fff;font-size:13px;color:red;cursor:pointer}.bread-btn .bread-embed-inner{position:absolute;top:0;left:0;right:50px;bottom:0;padding:0 1em}.bread-btn .bread-embed-icon{position:absolute;top:-1px;right:-51px;bottom:-1px;left:100%;margin-left:-50px;margin-right:50px;background-color:#055170;background-repeat:no-repeat;background-image:url(assets/coin.svg);background-position:center;background-size:auto 30px;border-radius:0 4px 4px 0;cursor:pointer}.bread-btn .bread-pot:before{content:"Pay over time";color:red}.bread-dur{text-transform:uppercase}.bread-as-low-as .bread-as-low-as-info{z-index:1000;font-size:1.25em;font-weight:700;padding:3px}.bread-btn.bread-as-low-as .bread-as-low-as:before,.bread-label .bread-as-low-as:before{content:"As low as";color:red;margin-right:0!important}.bread-btn.bread-show-terms .bread-for:before,.bread-label .bread-for:before{content:"for";color:red;margin-right:.5em}.bread-center{text-align:center;vertical-align:middle;height:100%;width:100%;display:table}.bread-center-inner{display:table-cell;vertical-align:middle}.bread-label{color:red;text-align:center}.bread-label .bread-embed-inner{display:inline-block;vertical-align:middle;height:100%}.bread-label .bread-embed-icon{vertical-align:middle;display:inline-block;background:#ef8919;border-radius:100%;width:1.25em;height:1.25em;color:#fff;line-height:1.5em;font-size:.85em;margin-top:-.2em}.bread-label .bread-embed-icon:after{content:"i"}.bread-btn.bread-show-terms .bread-for:before,.bread-btn.bread-show-terms .bread-pot:before{color:red}@media only screen and -webkit-min-device-pixel-ratio 2,only screen and min-device-pixel-ratio 2,only screen and min-resolution 192dpi,only screen and min-resolution 2dppx{.bread-btn .bread-embed-icon{background-image:url(assets/coin.svg)}}',
-       items: [
-        {
-          name:'Overwatch',
-          price:10000,
-          sku:'Overwatch123',
-          imageUrl:'[https://images-na.ssl-images-amazon.com/images/I/51jI2r-gFDL._AC_SX215_.jpg]',
-          detailUrl:'[https://www.amazon.com/Overwatch-Game-Year-Xbox-One/dp/B0733HQQQQ/ref=sr_1_1?ie=UTF8&qid=1525642686&sr=8-1&keywords=overwatch+game]', 
-          quantity: 1
-        }],
-        shippingOptions:[{
+          const billingContact = {
+          firstName:'Justin',
+          lastName:'Afsari',
+          address:'1734 Hansen Rd',
+          zip:'94550',
+          city:'Livermore',
+          state:'NY',
+          phone:'925-300-5184',
+          email:'afsarijustin@gmail.com'
+        };
+        const shippingContact = {
+          fullName: 'Justin Afsari',
+          address:'1734 Hansen Rd',
+          zip:'94550',
+          city:'Livermore',
+          state:'NY',
+          phone:'925-300-5184'
+        };
+        const shippingOptions = [{
           typeId:001,
           cost:700,
           type:'Two-Day Shipping'
@@ -43,25 +47,26 @@
           cost:1500,
           type:'Overnight Shipping'
         }
-        ],
-        billingContact:{
-          firstName:'Justin',
-          lastName:'Afsari',
-          address:'1734 Hansen Rd',
-          zip:'94550',
-          city:'Livermore',
-          state:'NY',
-          phone:'925-300-5184',
-          email:'afsarijustin@gmail.com'
-        },
-        shippingContact:{
-          fullName: 'Justin Afsari',
-          address:'1734 Hansen Rd',
-          zip:'94550',
-          city:'Livermore',
-          state:'NY',
-          phone:'925-300-5184'
-        },
+        ];
+        const items = [
+        {
+          name:'Overwatch',
+          price:10000,
+          sku:'Overwatch123',
+          imageUrl:'[https://images-na.ssl-images-amazon.com/images/I/51jI2r-gFDL._AC_SX215_.jpg]',
+          detailUrl:'[https://www.amazon.com/Overwatch-Game-Year-Xbox-One/dp/B0733HQQQQ/ref=sr_1_1?ie=UTF8&qid=1525642686&sr=8-1&keywords=overwatch+game]', 
+          quantity: 1
+        }];
+
+      var opts = {
+        buttonId: 'bread-checkout-btn',
+        actAsLabel: false, 
+        asLowAs: true, //Displays price per month to logged out users
+        customCSS: '.bread-embed,body,html{position:absolute;top:0;right:0;bottom:0;left:0;font-family:sans-serif;margin:0;padding:0}.bread-embed{visibility:hidden}.bread-btn{border:2px solid #055170;border-radius:8px;background:#fff;font-size:13px;color:red;cursor:pointer}.bread-btn .bread-embed-inner{position:absolute;top:0;left:0;right:50px;bottom:0;padding:0 1em}.bread-btn .bread-embed-icon{position:absolute;top:-1px;right:-51px;bottom:-1px;left:100%;margin-left:-50px;margin-right:50px;background-color:#055170;background-repeat:no-repeat;background-image:url(assets/coin.svg);background-position:center;background-size:auto 30px;border-radius:0 4px 4px 0;cursor:pointer}.bread-btn .bread-pot:before{content:"Pay over time";color:red}.bread-dur{text-transform:uppercase}.bread-as-low-as .bread-as-low-as-info{z-index:1000;font-size:1.25em;font-weight:700;padding:3px}.bread-btn.bread-as-low-as .bread-as-low-as:before,.bread-label .bread-as-low-as:before{content:"As low as";color:red;margin-right:0!important}.bread-btn.bread-show-terms .bread-for:before,.bread-label .bread-for:before{content:"for";color:red;margin-right:.5em}.bread-center{text-align:center;vertical-align:middle;height:100%;width:100%;display:table}.bread-center-inner{display:table-cell;vertical-align:middle}.bread-label{color:red;text-align:center}.bread-label .bread-embed-inner{display:inline-block;vertical-align:middle;height:100%}.bread-label .bread-embed-icon{vertical-align:middle;display:inline-block;background:#ef8919;border-radius:100%;width:1.25em;height:1.25em;color:#fff;line-height:1.5em;font-size:.85em;margin-top:-.2em}.bread-label .bread-embed-icon:after{content:"i"}.bread-btn.bread-show-terms .bread-for:before,.bread-btn.bread-show-terms .bread-pot:before{color:red}@media only screen and -webkit-min-device-pixel-ratio 2,only screen and min-device-pixel-ratio 2,only screen and min-resolution 192dpi,only screen and min-resolution 2dppx{.bread-btn .bread-embed-icon{background-image:url(assets/coin.svg)}}',
+        items,
+        shippingOptions,
+        billingContact,
+        shippingContact,
           calculateTax: function(shippingContact,cb){
             if(shippingContact.state === 'NY') { // check to see if address is in New York.
           var shippingTotal = shippingContact.selectedShippingOption.cost; // I want to include the shipping with the calculation of my tax
