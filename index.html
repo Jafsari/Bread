@@ -95,12 +95,6 @@
           console.log(`Error:${err}`)
         } else {
           console.log(customer)
-          const visibility = (str) => {
-            let status = document.querySelector('#status')
-            if (status) {
-              status.innerHTML = str
-            }
-          }
           switch(customer.state){
           // Customer object has two properties, State and email 
           //If the state is prequalified or unqualified append a message to the User.         
