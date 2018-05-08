@@ -13,27 +13,25 @@
     </form>
     <div id='status'> </div>
       <script>
-        const visibility = (str) => {
-        let status = document.querySelector('#status')
-        if (status) {
-        status.innerHTML = str
-            }
+          const visibility = (str) => {
+          let status = document.querySelector('#status')
+          status.innerHTML = str;
           }
           const billingContact = {
           firstName:'Justin',
           lastName:'Afsari',
-          address:'1734 Hansen Rd',
-          zip:'94550',
-          city:'Livermore',
+          address:'126 1ST AVE APT 2R',
+          zip:'10009',
+          city:'New York',
           state:'NY',
           phone:'925-300-5184',
           email:'afsarijustin@gmail.com'
         };
         const shippingContact = {
           fullName: 'Justin Afsari',
-          address:'1734 Hansen Rd',
-          zip:'94550',
-          city:'Livermore',
+          address:'126 1ST AVE APT 2R',
+          zip:'10009',
+          city:'New York',
           state:'NY',
           phone:'925-300-5184'
         };
@@ -110,8 +108,7 @@
             }
             }
           }
-    
-      bread.checkout(opts);
+    bread.checkout(opts);
       </script>
   
 </body>
